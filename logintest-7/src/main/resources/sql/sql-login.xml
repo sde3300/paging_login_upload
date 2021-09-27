@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="btc.mapper.LoginMapper">
+	<insert id="signUp" parameterType="btc.dto.UserDto">
+		<![CDATA[
+			INSERT INTO 
+				member (user_id, user_pw, user_name, user_email, user_role)
+			VALUES 
+				(#{userName}, #{userPw}, #{userName}, #{userEmail}, 'ROLE_USER')
+		]]>
+	</insert>
+	
+	<select id="isUser" parameterType="btc.dto.UserDto" resultType="int">
+		<![CDATA[
+			SELECT count(user_id)
+			FROM member
+			WHERE user_id = #{userId}
+			AND user_pw = #{userPw}
+		]]>
+	</select>
+	
+	<select id="login" parameterType="btc.dto.UserDto" resultType="btc.dto.UserDto">
+		<![CDATA[
+			SELECT user_id, user_role
+			FROM member
+			WHERE user_id = #{userId}
+			AND user_pw = #{userPw}
+		]]>
+	</select>
+</mapper>

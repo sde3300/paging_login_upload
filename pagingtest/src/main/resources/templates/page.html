@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <form action="" method="get">
+    <div>
+        <select name="keyword" id="keyword">
+            <option value="name">이름</option>
+            <option value="email">이메일</option>
+        </select>
+        <input type="text" id="search" name="search">
+        <button type="submit">검색</button>
+    </div>
+  </form>
+  
+  <!-- 전체 데이터 출력해줌 -->
+  <p th:text="${users}">
+  <table>
+    <thead>
+    <tr>
+        <th scope="col">성</th>
+        <th scope="col">이름</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- controller에서 model에 저장한 데이터타입이 PageHelper의 PageInfo 타입 -> getList()라는게 존재함 -->
+    	<!-- getList() : pageInfo 클래스 타입에서 지원하는 데이터를 출력하는 메서드, Page클래스 타입(List와 동일)으로 데이터를 출력함 -->
+    	<!-- thymeleaf 타입의 변수 user에 users 객체가 가지고 있는 List 데이터(PageDto 타입 데이터)를 하나씩 출력 -->
+    <tr th:each="user : ${users.getList()}">
+        <th th:text="${user.firstName}"></th>
+        <td th:text="${user.lastName}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+<!-- 페이징 -->
+  <nav>
+      <ul>
+          <!-- getPrePage : 이전 페이지, PageInfo 클래스가 지원하는 메서드, 이전페이지 번호를 출력 -->
+          <!-- disable : html 속성으로 해당 태그를 비활성화 하는 속성 -->
+          <li th:classappend="${users.getPrePage() == 0} ? 'disabled'">
+              <!-- href: /page?pageNum=이전페이지&keyword=검색분류&search=검색어 -->
+              <!-- 링크 태그인 a 태그를 사용하여 지정한 페이지로 이동 -->
+              <!-- 주소와 연동된 controller로 이동 -->
+              <!-- a태그가 현재는 활성화 안된다고햇는데 되있다 ?-->
+              <a th:href="@{/page(pageNum=${users.getPrePage()})}">Previous</a>
+          </li>
+          <!-- getNavigateFirstPage() : 페이징의 처음 숫자 getNavigateLastPage : 페이징의 마지막 숫자를 이용해 페이징 숫자 출력 -->
+          <!-- href : /page?pageNum=선택한 페이지&keyword=검색분류&search=검색어 -->
+          <!-- <li>
+            <p th:text="${users}">
+          </li> -->
+          
+          <!-- 해당 네비게이션의 첫번째 페이지 숫자, 마지막 페이지 숫자 -->
+          <li th:each="page: ${#numbers.sequence(users.getNavigateFirstPage(), users.getNavigateLastPage())}" th:classappend="${page == users.getPageNum()} ? 'active'">
+          
+              <a th:text="${page}" th:href="@{/page(pageNum=${page})}"></a>
+          </li>
+          <!-- getPrePage : 다음 페이지 -->
+          <li th:classappend="${users.getNextPage() == 0} ? 'disabled'">
+              <!-- href: /page?pageNum=다음페이지&keyword=검색분류&search=검색어 -->
+              <a th:href="@{/page(pageNum=${users.getNextPage()})}">Next</a>
+          </li>
+      </ul>
+  </nav>
+</body>
+</html>

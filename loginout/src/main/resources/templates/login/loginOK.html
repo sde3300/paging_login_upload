@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+
+	<script src="/js/jquery-3.6.0.js" th:src="@{/js/jquery-3.6.0.js}"></script>
+	<script src="/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+	<script src="/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+
+</head>
+<body>
+	<header class="container">
+		<div class="jumbotron">
+			<h1 class="text-center">로그인 성공</h1>
+		</div>
+	</header>
+
+	<main class="container">
+		<section class="row">
+			<article class="col-sm-6 mx-auto">
+				<!-- thymeleaf 템플릿 엔진에서 세션의 정보를 확인할 수 있는 session 객체를 사용하여 세션에 저장된 내용을 확인 -->
+				<!-- controller에서 setAttribute메서드를 통해서 등록한 세션속성명을 사용하여 데이터를 출력 -->
+				<div th:if="${session.userId} != null">
+					<p th:text="|${session.userName} 님 반갑습니다|"></p>
+					<br><hr><br>
+					<p th:text="|ID : ${session.userId}|"></p>
+					<p th:text="|이름 : ${session.userName}|"></p>
+					<p th:text="|이메일 : ${session.userEmail}|"></p>
+					<p th:text="|회원 등급 : ${session.userLevel}|"></p>
+				</div>
+				<br><hr><br>
+				<div class="mb-5">
+					<a href="/login/logout" class="btn btn-outline-primary" id="btnLogout">로그아웃</a>
+				</div>
+			</article>
+		</section>
+	</main>
+	
+	<footer class="jumbotron">
+		<div class="container">
+			<p class="text-center">made by btc</p>
+		</div>
+	</footer>
+	
+</body>
+</html>

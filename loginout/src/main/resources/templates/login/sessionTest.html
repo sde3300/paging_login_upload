@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+
+	<script src="/js/jquery-3.6.0.js" th:src="@{/js/jquery-3.6.0.js}"></script>
+	<script src="/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+	<script src="/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+
+</head>
+<body>
+
+	<header class="container">
+		<div class="jumbotron">
+			<h1 class="text-center">Session 테스트</h1>
+		</div>
+	</header>
+	
+	<main class="container">
+		<h1>세선 사용 시 사용자 이름 출력</h1>
+		<h1 th:if="${session.userId} != null" th:text="${session.userId}"></h1>
+		<br>
+		<h1 th:unless="${session.userId} != null" th:text="|세션 정보가 없습니다.|"></h1>
+		<br>
+		<a href="/login/sessionInput" class="btn btn-primary">세션 동작하기</a>
+	</main>
+	
+	<footer class="jumbotron mb-0">
+		<div class="container">
+			<p class="text-center">made by btc</p>
+		</div>
+	</footer>
+	
+
+</body>
+</html>

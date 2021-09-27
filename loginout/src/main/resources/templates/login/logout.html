@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+
+	<script src="/js/jquery-3.6.0.js" th:src="@{/js/jquery-3.6.0.js}"></script>
+	<script src="/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+	<script src="/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+
+	<script>
+	$(document).ready(function() {
+		setTimeout(function() {
+			location.href="/login/login";
+		}, 2000); 
+	});
+	</script>
+	
+</head>
+<body>
+	<header class="container">
+		<div class="jumbotron">
+			<h1 class="text-center">로그아웃</h1>
+		</div>
+	</header>
+
+	<main class="container">
+		<section class="row">
+			<article class="col-sm-6 mx-auto">
+				<h2>로그아웃 되었습니다.</h2>
+			</article>
+		</section>
+	</main>
+	
+	<footer class="jumbotron">
+		<div class="container">
+			<p class="text-center">made by btc</p>
+		</div>
+	</footer>
+	
+</body>
+</html>

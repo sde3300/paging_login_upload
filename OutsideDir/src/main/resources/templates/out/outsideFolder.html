@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	
+	<link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+
+	<script src="/js/jquery-3.6.0.js" th:src="@{/js/jquery-3.6.0.js}"></script>
+	<script src="/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+	<script src="/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+
+</head>
+<body>
+
+	<header class="container"></header>
+		<div class="jumbotron">
+			<h1 class="text-center">외부 폴더 사용하기</h1>
+		</div>
+		
+		<main class="container">
+		<!-- 
+			- 스프링에서 기본적으로 이미지와 같은 컨텐츠가 위치하는 폴더는 resource/static 폴더를 사용함.
+			- static 폴더는 이름과 같이 해당 폴더에 이미지를 업로드하여도 실시간으로 확인되지 않음,
+			서버 재 실행 후 업로드된 이미지를 사용할 수 있음.
+			
+			- 외부 폴더를 추가하여 사용 시 업로드된 이미지를 실시간으로 인식시켜 사용할 수 있음
+			
+			- 외부 폴더를 추가하려면 WebMvcConfigurer 를 상속받아 해당 폴더를 등록해야 함 
+		-->
+		
+		<div class="mb-3 p-3 border">
+			<h3>내부 static 폴더에 처음부터 존재하는 이미지</h3>
+			<img alt="펭수1" src="/insideImages/pengsu001.jpg" th:src="@{/insideImages/pengsu001.jpg}" class="mx-auto d-block">
+			<hr>
+			<h3>내부 static 폴더에 나중에 추가된 이미지</h3>
+			<img alt="펭수3" src="/insideImages/pengsu003.jpg" th:src="@{/insideImages/pengsu003.jpg}" class="mx-auto d-block">
+		</div>
+		<div class="p-3 border">
+			<h3>외부 폴더에 처음부터 존재하는 이미지</h3>
+			<img alt="펭수2" src="/outsideImg/pengsu002.jpg" th:src="@{/outsideImg/pengsu002.jpg}" class="mx-auto d-block">
+			<hr>
+			<h3>외부 폴더에 나중에 추가된 이미지</h3>
+			<img alt="펭수4" src="/outsideImg/pengsu004.jpg" th:src="@{/outsideImg/pengsu004.jpg}" class="mx-auto d-block">
+		</div>
+		
+		</main>
+		
+		<footer class="jumbotron">
+			<div class="container">
+				<p class="text-center">made by btc</p>
+			</div>
+		</footer>
+
+</body>
+</html>
